@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useState } from 'react'
 import { pathLogo } from '../../images/constants'
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
     const [country, setCountry] = useState('');
@@ -16,6 +17,21 @@ export const Register = () => {
     const handleChangeProvince = (event: SelectChangeEvent) => {
         setProvince(event.target.value as string);
     };
+
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate('/login', {
+            //for not create a new history , this component replace 
+            replace: true
+        });
+    }
+    const handleRegister = () => {
+        navigate('/contactus', {
+            //for not create a new history , this component replace 
+            replace: true
+        });
+    }
     return (
         <div style={{
             padding: '15%',
@@ -81,8 +97,8 @@ export const Register = () => {
                     </Box>
                 </FormControl>
             </Container>
-            <Button style={{ margin: '5%' }} variant="outlined" >Registrarse</Button>
-            <Link style={{ margin: '5%' }}>Tienes una cuenta? Continúa por aquí 💻</Link>
+            <Button style={{ margin: '5%' }} variant="outlined" onClick={handleRegister}>Registrarse</Button>
+            <Link style={{ margin: '5%' }} onClick={handleLogin}>Tienes una cuenta? Continúa por aquí 💻</Link>
         </div>
     )
 }
